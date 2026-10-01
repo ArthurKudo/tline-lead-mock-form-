@@ -3,89 +3,455 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T-Line — Formulário (homologação)</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Compass Sport T270 — T-Line (homologação)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap">
 <style>
   :root{
-    --bg:#f3f5f7;
-    --surface:#ffffff;
-    --border:#dbe2e8;
-    --text:#182029;
-    --text-muted:#5b6b78;
-    --accent:#35538f;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#11161c;
-      --surface:#171e26;
-      --border:#2c3742;
-      --text:#e7edf2;
-      --text-muted:#9aa8b4;
-      --accent:#8fa9de;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#11161c;
-    --surface:#171e26;
-    --border:#2c3742;
-    --text:#e7edf2;
-    --text-muted:#9aa8b4;
-    --accent:#8fa9de;
-    color-scheme: dark;
+    --black:#000000;
+    --ink:#111111;
+    --white:#ffffff;
+    --yellow:#ffb400;
+    --yellow-dark:#e6a200;
+    --green:#25b84a;
+    --muted:#6b6b6b;
+    --line:#d9d9d9;
+    --hml:#fff3c4;
+    --hml-ink:#5c4500;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;height:100%;}
+  html,body{margin:0;padding:0;}
   body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
+    font-family:"Open Sans", Arial, Helvetica, sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
   }
+  a{color:inherit;}
+  .container{max-width:1100px;margin:0 auto;padding-inline:16px;}
+
+  .hml-bar{
+    background:var(--hml);
+    color:var(--hml-ink);
+    font-size:12px;
+    border-bottom:1px solid #f0d77a;
+  }
+  .hml-bar .container{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;
+    padding-block:8px;
+  }
+  .hml-bar strong{letter-spacing:.04em;}
+  .hml-bar label{display:flex;align-items:center;gap:6px;font-weight:600;}
+  .hml-bar select{
+    font:inherit;font-weight:400;
+    padding:3px 6px;border:1px solid #d8bf5c;border-radius:3px;background:#fffbe8;color:var(--hml-ink);
+  }
+
+  .topbar{background:var(--black);color:var(--white);}
+  .topbar .container{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding-block:20px;flex-wrap:wrap;
+  }
+  .brands{display:flex;align-items:center;gap:52px;}
+  .logo-jeep{font-size:30px;font-weight:800;letter-spacing:-1.5px;line-height:1;}
+  .logo-tline{font-size:22px;font-weight:400;letter-spacing:6px;line-height:1;}
+  .logo-tline span{display:inline-block;transform:translateY(-3px);font-size:14px;margin-inline:2px;}
+  .top-actions{display:flex;align-items:center;gap:32px;}
+  .unit{
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;text-transform:uppercase;
+    padding-bottom:8px;border-bottom:1px solid var(--yellow);
+  }
+  .unit svg{flex:none;}
+  .round-btns{display:flex;gap:10px;}
+  .round{
+    width:50px;height:50px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white);text-decoration:none;
+  }
+  .round.phone{background:var(--yellow);}
+  .round.wpp{background:var(--green);}
+
+  .mainnav{background:var(--black);border-top:1px solid #1e1e1e;}
+  .mainnav ul{
+    list-style:none;margin:0;padding:0;
+    display:flex;align-items:center;gap:4px 26px;flex-wrap:wrap;
+    min-height:50px;
+  }
+  .mainnav a{
+    color:var(--white);text-decoration:none;
+    font-size:11.5px;font-weight:700;text-transform:uppercase;
+    display:flex;align-items:center;gap:6px;padding-block:14px;
+  }
+  .mainnav a:hover{color:var(--yellow);}
+
+  .hero{
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.05) 100%),
+      linear-gradient(180deg, #7f8c96 0%, #9aa7ae 30%, #6f7f7a 55%, #4b5e3c 80%, #5f7a3a 100%);
+    color:var(--white);
+    overflow:hidden;
+  }
+  .hero .mountains{position:absolute;inset:0;width:100%;height:100%;}
+  .hero-inner{
+    position:relative;
+    display:grid;grid-template-columns:1fr 348px;gap:32px;
+    padding-block:34px 0;
+  }
+  .crumbs{font-size:11px;margin-bottom:22px;}
+  .crumbs a{text-decoration:underline;}
+  .model{font-size:44px;font-weight:800;margin:0;line-height:1;letter-spacing:.5px;}
+  .version{font-size:13px;font-weight:700;margin:6px 0 30px;}
+  .deal{
+    max-width:430px;border-top:1px solid rgba(255,255,255,.8);border-bottom:1px solid rgba(255,255,255,.8);
+    text-align:center;font-weight:700;font-size:14px;padding-block:12px;margin-bottom:30px;
+  }
+  .price-label{color:var(--yellow);font-weight:800;font-size:20px;text-decoration:line-through;}
+  .price{font-size:28px;font-weight:700;margin:2px 0 0;}
+  .hero-spacer{height:260px;}
+  .back{
+    position:absolute;right:16px;top:30px;font-size:11px;text-transform:uppercase;text-decoration:none;
+  }
+
   .card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:36px 32px;
-    max-width:480px;
-    width:100%;
-    text-align:center;
-    box-shadow:0 8px 24px -12px rgba(0,0,0,.15);
+    background:var(--white);color:var(--ink);
+    box-shadow:0 2px 12px rgba(0,0,0,.25);
+    padding:20px 14px 14px;
+    margin-top:32px;
+    align-self:start;
+    position:relative;z-index:2;
   }
-  .tag{
-    display:inline-block;
-    font-size:.72rem;
-    font-weight:600;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    color:var(--accent);
-    background:color-mix(in srgb, var(--accent) 12%, transparent);
-    padding:4px 10px;
-    border-radius:999px;
-    margin-bottom:14px;
+  .card-head{padding:0 4px 16px;border-bottom:3px solid var(--black);margin-bottom:16px;}
+  .card-head h2{font-size:19px;font-weight:600;margin:0 0 8px;}
+  .card-head p{font-size:11px;font-weight:600;margin:0;line-height:1.5;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:14px;font-weight:700;margin-bottom:8px;}
+  .field input{
+    width:100%;height:44px;
+    border:1px solid #444;border-radius:0;
+    padding:0 11px;font:inherit;font-size:13px;color:var(--ink);background:var(--white);
   }
-  h1{font-size:1.3rem;margin:0 0 10px;}
-  p{color:var(--text-muted);font-size:.92rem;line-height:1.5;margin:0 0 6px;}
-  code{
-    font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
-    font-size:.82em;
-    background:var(--bg);
-    border:1px solid var(--border);
-    padding:1px 6px;
-    border-radius:4px;
+  .field input::placeholder{color:#8a8a8a;}
+  .field input:focus{outline:2px solid var(--yellow);outline-offset:0;border-color:var(--black);}
+  .field input.invalid{border-color:#c62828;}
+  .field .err{color:#c62828;font-size:11px;margin-top:4px;display:none;}
+  .field input.invalid + .err{display:block;}
+  .contact-pref{font-size:12.5px;font-weight:700;margin:20px 0 10px;}
+  .checks{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .check{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;cursor:pointer;}
+  .check input,.consent input{
+    appearance:none;-webkit-appearance:none;
+    width:17px;height:17px;border:1.5px solid #222;border-radius:2px;margin:0;flex:none;
+    display:grid;place-content:center;cursor:pointer;background:var(--white);
   }
+  .check input:checked,.consent input:checked{background:var(--black);}
+  .check input:checked::after,.consent input:checked::after{
+    content:"";width:4px;height:8px;border:solid var(--white);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px);
+  }
+  .check input:focus-visible,.consent input:focus-visible{outline:2px solid var(--yellow);outline-offset:1px;}
+  .consent{display:flex;gap:6px;align-items:flex-start;font-size:11px;font-weight:600;margin:12px 0 10px;line-height:1.45;cursor:pointer;}
+  .privacy{font-size:10.5px;line-height:1.5;margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .submit{
+    width:100%;height:47px;border:0;
+    background:var(--yellow);color:var(--ink);
+    font:inherit;font-size:12.5px;font-weight:700;text-transform:uppercase;
+    cursor:pointer;
+  }
+  .submit:hover{background:var(--yellow-dark);}
+  .submit:focus-visible{outline:2px solid var(--black);outline-offset:2px;}
+  .submit[disabled]{opacity:.65;cursor:wait;}
+
+  .below{border-top:1px solid #333;margin-top:48px;}
+  footer{font-size:11px;color:var(--muted);padding-block:16px 32px;}
+
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-spacer{display:none;}
+    .card{margin-top:8px;margin-bottom:24px;}
+    .back{position:static;display:block;margin-bottom:10px;}
+    .brands{gap:24px;}
+    .top-actions{gap:16px;width:100%;justify-content:space-between;}
+    .model{font-size:36px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
 </style>
 </head>
 <body>
-  <div class="card">
-    <span class="tag">Homologação · em construção</span>
-    <h1>Formulário mocado do site T-Line</h1>
-    <p>Esta página vai receber o formulário Web-to-Lead usado para testar a criação de Lead puro (sem conversão automática) durante a homologação.</p>
-    <p>Ainda não está com o conteúdo final — o layout real e o código do Web-to-Lead entram aqui em seguida.</p>
-    <p style="margin-top:16px">Página de retorno pós-envio: <code>obrigado.html</code></p>
+
+<div class="hml-bar" role="region" aria-label="Painel de homologação">
+  <div class="container">
+    <strong>AMBIENTE DE HOMOLOGAÇÃO</strong>
+    <span>Página de teste — os envios criam Leads no Salesforce T-Line Homolog.</span>
+    <label for="hmlConcessionaria">Concessionária
+      <select id="hmlConcessionaria"></select>
+    </label>
+    <label for="hmlSegmento">Segmento
+      <select id="hmlSegmento">
+        <option value="Jeep/RAM">Jeep/RAM</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Pós-venda">Pós-venda</option>
+      </select>
+    </label>
   </div>
+</div>
+
+<header class="topbar">
+  <div class="container">
+    <div class="brands" aria-label="Jeep · T-Line">
+      <span class="logo-jeep">Jeep</span>
+      <span class="logo-tline">T<span>•</span>LINE</span>
+    </div>
+    <div class="top-actions">
+      <div class="unit">
+        <svg width="12" height="16" viewBox="0 0 12 16" aria-hidden="true"><path fill="#ffb400" d="M6 0C2.7 0 0 2.6 0 5.9 0 10.3 6 16 6 16s6-5.7 6-10.1C12 2.6 9.3 0 6 0zm0 8.2a2.3 2.3 0 1 1 0-4.6 2.3 2.3 0 0 1 0 4.6z"/></svg>
+        <span id="unitLabel">T-Line Jeep / RAM | São José dos Campos - SP</span>
+        <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#ffb400" stroke-width="2" d="M1 1l5 5 5-5"/></svg>
+      </div>
+      <div class="round-btns">
+        <a class="round phone" href="#" aria-label="Telefone">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+        </a>
+        <a class="round wpp" href="#" aria-label="WhatsApp">
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mainnav" aria-label="Menu principal">
+  <div class="container">
+    <ul>
+      <li><a href="#" aria-label="Página inicial"><svg width="13" height="12" viewBox="0 0 13 12" aria-hidden="true"><path fill="#fff" d="M6.5 0 0 5.4h1.6V12h3.6V8h2.6v4h3.6V5.4H13z"/></svg></a></li>
+      <li><a href="#">Novos <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="2.4" d="M1 1l5 5 5-5"/></svg></a></li>
+      <li><a href="#">Seminovos</a></li>
+      <li><a href="#">Ofertas <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="2.4" d="M1 1l5 5 5-5"/></svg></a></li>
+      <li><a href="#">Soluções financeiras <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="2.4" d="M1 1l5 5 5-5"/></svg></a></li>
+      <li><a href="#">PCD</a></li>
+      <li><a href="#">Pós-venda <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="2.4" d="M1 1l5 5 5-5"/></svg></a></li>
+      <li><a href="#">Vendas diretas <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="2.4" d="M1 1l5 5 5-5"/></svg></a></li>
+      <li><a href="#">Test drive</a></li>
+      <li><a href="#">Institucional <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="2.4" d="M1 1l5 5 5-5"/></svg></a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <svg class="mountains" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#8b979e" d="M0 300 L120 230 L230 270 L360 190 L480 250 L600 200 L720 260 L860 180 L980 240 L1100 200 L1240 250 L1360 210 L1440 240 V700 H0Z"/>
+      <path fill="#6f7d80" d="M0 360 L160 300 L300 340 L420 290 L560 350 L700 300 L840 360 L980 310 L1120 350 L1280 300 L1440 340 V700 H0Z"/>
+      <path fill="#4f6150" d="M0 430 L140 390 L280 420 L460 380 L620 430 L780 400 L940 440 L1100 400 L1260 430 L1440 400 V700 H0Z"/>
+      <path fill="#2f3f2c" d="M0 520 L60 470 L90 500 L130 440 L170 500 L210 460 L260 520 L1440 520 V700 H0Z"/>
+      <path fill="#62803a" d="M0 560 C300 520 600 600 900 560 C1100 535 1300 570 1440 550 V700 H0Z"/>
+    </svg>
+    <div class="container hero-inner">
+      <div>
+        <div class="crumbs"><a href="#">Página Inicial</a> → <a href="#">Ofertas</a> → COMPASS</div>
+        <h1 class="model">COMPASS</h1>
+        <p class="version">COMPASS SPORT T270</p>
+        <div class="deal">CONDIÇÃO IMPERDÍVEL</div>
+        <div class="price-label">À VISTA</div>
+        <p class="price">R$ 137.990,00</p>
+        <div class="hero-spacer"></div>
+      </div>
+
+      <form class="card" id="leadForm" method="POST" novalidate
+            action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00D8900000622og">
+        <input type="hidden" name="oid" value="00D8900000622og">
+        <input type="hidden" name="retURL" value="https://arthurkudo.github.io/tline-lead-mock-form-/obrigado.html">
+        <input type="hidden" name="lead_source" value="Site">
+        <input type="hidden" name="first_name" id="first_name">
+        <input type="hidden" name="last_name" id="last_name">
+        <input type="hidden" name="00N89000005pAFL" id="w2lConcessionaria">
+        <input type="hidden" name="00N890000060Kkr" id="w2lSegmento">
+        <input type="hidden" name="00N89000005pJdd" id="w2lGrupoProduto">
+        <input type="hidden" name="00N89000006Xdom" id="w2lMarca">
+        <input type="hidden" name="00N89000006Xdon" value="Compass Sport T270">
+        <input type="hidden" name="00N89000005pJdg" value="Homologação - Formulário Site">
+
+        <div class="card-head">
+          <h2>Estou Interessado</h2>
+          <p>Preencha o formulário abaixo para receber o contato de um de nossos especialistas:</p>
+        </div>
+
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" placeholder="Nome" autocomplete="name" maxlength="120" required>
+          <div class="err">Informe nome e sobrenome.</div>
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="E-mail" autocomplete="email" maxlength="80">
+          <div class="err">Informe um e-mail válido.</div>
+        </div>
+        <div class="field">
+          <label for="phone">Telefone</label>
+          <input id="phone" name="phone" type="tel" placeholder="Telefone/Whatsapp" autocomplete="tel" inputmode="numeric" maxlength="15" required>
+          <div class="err">Informe um telefone com DDD.</div>
+        </div>
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input id="cpf" name="00N89000005pAFJ" type="text" placeholder="CPF" inputmode="numeric" maxlength="14">
+          <div class="err">CPF inválido.</div>
+        </div>
+
+        <div class="contact-pref">Quero receber contato por:</div>
+        <div class="checks">
+          <label class="check" for="aceiteEmail"><input id="aceiteEmail" type="checkbox" name="00N89000005pAFE" value="1"> E-mail</label>
+          <label class="check" for="aceiteWhatsapp"><input id="aceiteWhatsapp" type="checkbox" name="00N89000005pAFH" value="1"> Whatsapp</label>
+          <label class="check" for="aceiteTelefone"><input id="aceiteTelefone" type="checkbox" name="00N89000005pAFG" value="1"> Telefone</label>
+        </div>
+
+        <label class="consent" for="consentMarketing">
+          <input id="consentMarketing" type="checkbox">
+          <span>Autorizo o uso de minhas informações pessoais para campanhas de marketing.</span>
+        </label>
+        <p class="privacy">Ao informar meus dados, eu concordo com a <a href="#">Política de privacidade</a>.</p>
+
+        <button class="submit" id="submitBtn" type="submit">Estou interessado</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="below"></div>
+    <footer>Página de homologação Codeart · réplica visual do formulário de oferta do site T-Line, sem vínculo com o site oficial.</footer>
+  </div>
+</main>
+
+<script>
+(function () {
+  var CONCESSIONARIAS = [
+    { id: 'a028900000BvSfZAAV', nome: 'Jeep Ram - São José dos Campos', label: 'T-Line Jeep / RAM | São José dos Campos - SP', marca: 'Jeep', segmento: 'Jeep/RAM' },
+    { id: 'a028900000BvSfaAAF', nome: 'Jeep Ram - Caraguatatuba', label: 'T-Line Jeep / RAM | Caraguatatuba - SP', marca: 'Jeep', segmento: 'Jeep/RAM' },
+    { id: 'a028900000BvSfdAAF', nome: 'Toyota - São Paulo (Washington Luiz)', label: 'T-Line Toyota | São Paulo - SP', marca: 'Toyota', segmento: 'Toyota' },
+    { id: 'a028900000BvSfbAAF', nome: 'Leapmotor - São José dos Campos', label: 'T-Line Leapmotor | São José dos Campos - SP', marca: 'Toyota', segmento: 'Toyota' },
+    { id: 'a028900000BvSfcAAF', nome: 'Seminovos - São José dos Campos', label: 'T-Line Seminovos | São José dos Campos - SP', marca: 'Toyota', segmento: 'Toyota' },
+    { id: 'a028900000BvSfeAAF', nome: 'T-Service - São Paulo (João Dias)', label: 'T-Service | São Paulo - SP', marca: 'Toyota', segmento: 'Pós-venda' }
+  ];
+  var STORAGE_KEY = 'tlineMockConcessionaria';
+
+  var selConc = document.getElementById('hmlConcessionaria');
+  var selSeg = document.getElementById('hmlSegmento');
+  var form = document.getElementById('leadForm');
+  var nome = document.getElementById('nome');
+  var email = document.getElementById('email');
+  var phone = document.getElementById('phone');
+  var cpf = document.getElementById('cpf');
+
+  CONCESSIONARIAS.forEach(function (c) {
+    var opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.nome;
+    selConc.appendChild(opt);
+  });
+
+  function findConc(id) {
+    for (var i = 0; i < CONCESSIONARIAS.length; i++) {
+      if (CONCESSIONARIAS[i].id === id) { return CONCESSIONARIAS[i]; }
+    }
+    return CONCESSIONARIAS[0];
+  }
+
+  function applyConc(id, resetSegmento) {
+    var c = findConc(id);
+    selConc.value = c.id;
+    if (resetSegmento) { selSeg.value = c.segmento; }
+    document.getElementById('unitLabel').textContent = c.label;
+    document.getElementById('w2lConcessionaria').value = c.id;
+    document.getElementById('w2lMarca').value = c.marca;
+    document.getElementById('w2lGrupoProduto').value = c.marca;
+    document.getElementById('w2lSegmento').value = selSeg.value;
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  applyConc(saved || CONCESSIONARIAS[0].id, true);
+
+  selConc.addEventListener('change', function () {
+    applyConc(selConc.value, true);
+    try { localStorage.setItem(STORAGE_KEY, selConc.value); } catch (e) {}
+  });
+  selSeg.addEventListener('change', function () {
+    document.getElementById('w2lSegmento').value = selSeg.value;
+  });
+
+  function digits(v) { return v.replace(/\D/g, ''); }
+
+  phone.addEventListener('input', function () {
+    var d = digits(phone.value).slice(0, 11);
+    var out = d;
+    if (d.length > 2) { out = '(' + d.slice(0, 2) + ') ' + d.slice(2); }
+    if (d.length > 6) {
+      var split = d.length === 11 ? 7 : 6;
+      out = '(' + d.slice(0, 2) + ') ' + d.slice(2, split) + '-' + d.slice(split);
+    }
+    phone.value = out;
+  });
+
+  cpf.addEventListener('input', function () {
+    var d = digits(cpf.value).slice(0, 11);
+    var out = d;
+    if (d.length > 3) { out = d.slice(0, 3) + '.' + d.slice(3); }
+    if (d.length > 6) { out = d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6); }
+    if (d.length > 9) { out = d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6, 9) + '-' + d.slice(9); }
+    cpf.value = out;
+  });
+
+  function setInvalid(el, invalid) {
+    el.classList.toggle('invalid', invalid);
+    el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+  }
+
+  [nome, email, phone, cpf].forEach(function (el) {
+    el.addEventListener('input', function () { setInvalid(el, false); });
+  });
+
+  form.addEventListener('submit', function (evt) {
+    var partes = nome.value.trim().split(/\s+/).filter(Boolean);
+    var nomeOk = partes.length >= 1;
+    var emailOk = !email.value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    var phoneLen = digits(phone.value).length;
+    var phoneOk = phoneLen === 10 || phoneLen === 11;
+    var cpfLen = digits(cpf.value).length;
+    var cpfOk = cpfLen === 0 || cpfLen === 11;
+
+    setInvalid(nome, !nomeOk);
+    setInvalid(email, !emailOk);
+    setInvalid(phone, !phoneOk);
+    setInvalid(cpf, !cpfOk);
+
+    if (!(nomeOk && emailOk && phoneOk && cpfOk)) {
+      evt.preventDefault();
+      var first = form.querySelector('.invalid');
+      if (first) { first.focus(); }
+      return;
+    }
+
+    if (partes.length === 1) {
+      document.getElementById('first_name').value = '';
+      document.getElementById('last_name').value = partes[0];
+    } else {
+      document.getElementById('first_name').value = partes.slice(0, -1).join(' ');
+      document.getElementById('last_name').value = partes[partes.length - 1];
+    }
+    document.getElementById('w2lSegmento').value = selSeg.value;
+
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+  });
+
+  window.addEventListener('pageshow', function () {
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    btn.textContent = 'Estou interessado';
+  });
+})();
+</script>
 </body>
 </html>
