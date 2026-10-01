@@ -23,7 +23,12 @@ A barra amarela no topo permite escolher a concessionária e o segmento de desti
 | (oculto) Marca / Modelo | CA_Marca__c / CA_Modelo__c | `00N89000006Xdom` / `00N89000006Xdon` |
 | (oculto) Sub-origem | CA_SubOrigem__c = `Homologação - Formulário Site` | `00N89000005pJdg` |
 
+| (oculto) Blindagem / Financiamento / Veículo na Troca = `Não Ofertado` | CA_Blindagem__c / CA_Financiamento__c / CA_VeiculoNaTroca__c | `00N89000006RUWP` / `00N89000006RUWQ` / `00N89000006RUWR` |
+| (oculto) Total de tentativas = `0` | CA_TotalTentativas__c | `00N89000005pJdi` |
+
 Os Ids `00N...` dos campos customizados são da org Homolog — mudam em outra org.
+
+O Web-to-Lead não aplica valores padrão de picklist/número para campos que não vêm no POST (os outros canais aplicam), por isso esses defaults vão explícitos como campos ocultos.
 
 Web-to-Lead não aceita campos lookup, por isso a concessionária vai pelo código (`CA_CodigoIdentificador__c` da concessionária): 1 Jeep Ram SJC · 2 Jeep Ram Caraguatatuba · 3 Leapmotor SJC · 4 Seminovos SJC · 30 Toyota Washington Luiz · 31 T-Service João Dias.
 
