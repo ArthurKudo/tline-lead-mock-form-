@@ -269,7 +269,7 @@
         <input type="hidden" name="lead_source" value="Site">
         <input type="hidden" name="first_name" id="first_name">
         <input type="hidden" name="last_name" id="last_name">
-        <input type="hidden" name="00N89000005pAFL" id="w2lConcessionaria">
+        <input type="hidden" name="00N89000005pAFK" id="w2lCodigoConcessionaria">
         <input type="hidden" name="00N890000060Kkr" id="w2lSegmento">
         <input type="hidden" name="00N89000005pJdd" id="w2lGrupoProduto">
         <input type="hidden" name="00N89000006Xdom" id="w2lMarca">
@@ -329,12 +329,12 @@
 <script>
 (function () {
   var CONCESSIONARIAS = [
-    { id: 'a028900000BvSfZAAV', nome: 'Jeep Ram - São José dos Campos', label: 'T-Line Jeep / RAM | São José dos Campos - SP', marca: 'Jeep', segmento: 'Jeep/RAM' },
-    { id: 'a028900000BvSfaAAF', nome: 'Jeep Ram - Caraguatatuba', label: 'T-Line Jeep / RAM | Caraguatatuba - SP', marca: 'Jeep', segmento: 'Jeep/RAM' },
-    { id: 'a028900000BvSfdAAF', nome: 'Toyota - São Paulo (Washington Luiz)', label: 'T-Line Toyota | São Paulo - SP', marca: 'Toyota', segmento: 'Toyota' },
-    { id: 'a028900000BvSfbAAF', nome: 'Leapmotor - São José dos Campos', label: 'T-Line Leapmotor | São José dos Campos - SP', marca: 'Toyota', segmento: 'Toyota' },
-    { id: 'a028900000BvSfcAAF', nome: 'Seminovos - São José dos Campos', label: 'T-Line Seminovos | São José dos Campos - SP', marca: 'Toyota', segmento: 'Toyota' },
-    { id: 'a028900000BvSfeAAF', nome: 'T-Service - São Paulo (João Dias)', label: 'T-Service | São Paulo - SP', marca: 'Toyota', segmento: 'Pós-venda' }
+    { codigo: '1', nome: 'Jeep Ram - São José dos Campos', label: 'T-Line Jeep / RAM | São José dos Campos - SP', marca: 'Jeep', segmento: 'Jeep/RAM' },
+    { codigo: '2', nome: 'Jeep Ram - Caraguatatuba', label: 'T-Line Jeep / RAM | Caraguatatuba - SP', marca: 'Jeep', segmento: 'Jeep/RAM' },
+    { codigo: '30', nome: 'Toyota - São Paulo (Washington Luiz)', label: 'T-Line Toyota | São Paulo - SP', marca: 'Toyota', segmento: 'Toyota' },
+    { codigo: '3', nome: 'Leapmotor - São José dos Campos', label: 'T-Line Leapmotor | São José dos Campos - SP', marca: 'Toyota', segmento: 'Toyota' },
+    { codigo: '4', nome: 'Seminovos - São José dos Campos', label: 'T-Line Seminovos | São José dos Campos - SP', marca: 'Toyota', segmento: 'Toyota' },
+    { codigo: '31', nome: 'T-Service - São Paulo (João Dias)', label: 'T-Service | São Paulo - SP', marca: 'Toyota', segmento: 'Pós-venda' }
   ];
   var STORAGE_KEY = 'tlineMockConcessionaria';
 
@@ -348,24 +348,24 @@
 
   CONCESSIONARIAS.forEach(function (c) {
     var opt = document.createElement('option');
-    opt.value = c.id;
-    opt.textContent = c.nome;
+    opt.value = c.codigo;
+    opt.textContent = c.nome + ' (código ' + c.codigo + ')';
     selConc.appendChild(opt);
   });
 
-  function findConc(id) {
+  function findConc(codigo) {
     for (var i = 0; i < CONCESSIONARIAS.length; i++) {
-      if (CONCESSIONARIAS[i].id === id) { return CONCESSIONARIAS[i]; }
+      if (CONCESSIONARIAS[i].codigo === codigo) { return CONCESSIONARIAS[i]; }
     }
     return CONCESSIONARIAS[0];
   }
 
-  function applyConc(id, resetSegmento) {
-    var c = findConc(id);
-    selConc.value = c.id;
+  function applyConc(codigo, resetSegmento) {
+    var c = findConc(codigo);
+    selConc.value = c.codigo;
     if (resetSegmento) { selSeg.value = c.segmento; }
     document.getElementById('unitLabel').textContent = c.label;
-    document.getElementById('w2lConcessionaria').value = c.id;
+    document.getElementById('w2lCodigoConcessionaria').value = c.codigo;
     document.getElementById('w2lMarca').value = c.marca;
     document.getElementById('w2lGrupoProduto').value = c.marca;
     document.getElementById('w2lSegmento').value = selSeg.value;
@@ -373,7 +373,7 @@
 
   var saved = null;
   try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-  applyConc(saved || CONCESSIONARIAS[0].id, true);
+  applyConc(saved || CONCESSIONARIAS[0].codigo, true);
 
   selConc.addEventListener('change', function () {
     applyConc(selConc.value, true);

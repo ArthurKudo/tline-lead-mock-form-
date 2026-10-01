@@ -17,12 +17,14 @@ A barra amarela no topo permite escolher a concessionária e o segmento de desti
 | CPF | CA_CPF__c | `00N89000005pAFJ` |
 | Contato por E-mail / Whatsapp / Telefone | CA_AceiteEmail__c / CA_AceiteWhatsApp__c / CA_AceiteTelefone__c | `00N89000005pAFE` / `00N89000005pAFH` / `00N89000005pAFG` |
 | (oculto) Origem | LeadSource = `Site` | `lead_source` |
-| (oculto) Concessionária | CA_Concessionaria__c | `00N89000005pAFL` |
+| (oculto) Código da concessionária | CA_CodigoConcessionaria__c → o flow `CA_LeadAtribuirConcessionaria` preenche o lookup CA_Concessionaria__c | `00N89000005pAFK` |
 | (oculto) Segmento | CA_SegmentoAtendimento__c | `00N890000060Kkr` |
 | (oculto) Grupo de produto | CA_GrupoProduto__c | `00N89000005pJdd` |
 | (oculto) Marca / Modelo | CA_Marca__c / CA_Modelo__c | `00N89000006Xdom` / `00N89000006Xdon` |
 | (oculto) Sub-origem | CA_SubOrigem__c = `Homologação - Formulário Site` | `00N89000005pJdg` |
 
 Os Ids `00N...` dos campos customizados são da org Homolog — mudam em outra org.
+
+Web-to-Lead não aceita campos lookup, por isso a concessionária vai pelo código (`CA_CodigoIdentificador__c` da concessionária): 1 Jeep Ram SJC · 2 Jeep Ram Caraguatatuba · 3 Leapmotor SJC · 4 Seminovos SJC · 30 Toyota Washington Luiz · 31 T-Service João Dias.
 
 Hospedado via GitHub Pages a partir da branch `main`.
