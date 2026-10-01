@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T-Line — Formulário (homologação)</title>
+<style>
+  :root{
+    --bg:#f3f5f7;
+    --surface:#ffffff;
+    --border:#dbe2e8;
+    --text:#182029;
+    --text-muted:#5b6b78;
+    --accent:#35538f;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#11161c;
+      --surface:#171e26;
+      --border:#2c3742;
+      --text:#e7edf2;
+      --text-muted:#9aa8b4;
+      --accent:#8fa9de;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#11161c;
+    --surface:#171e26;
+    --border:#2c3742;
+    --text:#e7edf2;
+    --text-muted:#9aa8b4;
+    --accent:#8fa9de;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:36px 32px;
+    max-width:480px;
+    width:100%;
+    text-align:center;
+    box-shadow:0 8px 24px -12px rgba(0,0,0,.15);
+  }
+  .tag{
+    display:inline-block;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:color-mix(in srgb, var(--accent) 12%, transparent);
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  h1{font-size:1.3rem;margin:0 0 10px;}
+  p{color:var(--text-muted);font-size:.92rem;line-height:1.5;margin:0 0 6px;}
+  code{
+    font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    font-size:.82em;
+    background:var(--bg);
+    border:1px solid var(--border);
+    padding:1px 6px;
+    border-radius:4px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="tag">Homologação · em construção</span>
+    <h1>Formulário mocado do site T-Line</h1>
+    <p>Esta página vai receber o formulário Web-to-Lead usado para testar a criação de Lead puro (sem conversão automática) durante a homologação.</p>
+    <p>Ainda não está com o conteúdo final — o layout real e o código do Web-to-Lead entram aqui em seguida.</p>
+    <p style="margin-top:16px">Página de retorno pós-envio: <code>obrigado.html</code></p>
+  </div>
+</body>
+</html>
