@@ -5,7 +5,7 @@ Site estático usado na homologação da T-Line para testar a criação de Lead 
 - `index.html` — réplica visual da página de oferta (Compass) com o formulário "Estou Interessado", postando via Web-to-Lead para o Salesforce T-Line Homolog (org `00D8900000622og`).
 - `obrigado.html` — página de retorno (`retURL`) exibida após o envio.
 
-A barra amarela no topo permite escolher a concessionária e o segmento de destino de cada envio de teste.
+A barra amarela no topo permite escolher a concessionária, o segmento e a origem do Lead de cada envio de teste. GROW e NBS Gold são ignorados pelos flows de duplicidade (`CA_LeadIdentificacaoDuplicidade` e `CA_LeadValidarOportunidadeAbertaDuplicada`).
 
 ## Mapeamento de campos
 
@@ -16,7 +16,7 @@ A barra amarela no topo permite escolher a concessionária e o segmento de desti
 | Telefone | Phone | `phone` |
 | CPF | CA_CPF__c | `00N89000005pAFJ` |
 | Contato por E-mail / Whatsapp / Telefone | CA_AceiteEmail__c / CA_AceiteWhatsApp__c / CA_AceiteTelefone__c | `00N89000005pAFE` / `00N89000005pAFH` / `00N89000005pAFG` |
-| (oculto) Origem | LeadSource = `Site` | `lead_source` |
+| (barra de homologação) Origem do Lead — Site (padrão), MarketPlace, Meta, GROW, NBS Gold | LeadSource | `lead_source` |
 | (oculto) Código da concessionária | CA_CodigoConcessionaria__c → o flow `CA_LeadAtribuirConcessionaria` preenche o lookup CA_Concessionaria__c | `00N89000005pAFK` |
 | (oculto) Segmento | CA_SegmentoAtendimento__c | `00N890000060Kkr` |
 | (oculto) Grupo de produto | CA_GrupoProduto__c | `00N89000005pJdd` |

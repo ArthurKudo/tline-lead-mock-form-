@@ -44,6 +44,7 @@
   }
   .hml-bar strong{letter-spacing:.04em;}
   .hml-bar label{display:flex;align-items:center;gap:6px;font-weight:600;}
+  .hml-hint{font-style:italic;}
   .hml-bar select{
     font:inherit;font-weight:400;
     padding:3px 6px;border:1px solid #d8bf5c;border-radius:3px;background:#fffbe8;color:var(--hml-ink);
@@ -204,6 +205,16 @@
         <option value="Pós-venda">Pós-venda</option>
       </select>
     </label>
+    <label for="hmlLeadSource">Origem do Lead
+      <select id="hmlLeadSource">
+        <option value="Site">Site</option>
+        <option value="MarketPlace">MarketPlace</option>
+        <option value="Meta">Meta</option>
+        <option value="GROW">GROW</option>
+        <option value="NBS Gold">NBS Gold</option>
+      </select>
+    </label>
+    <span class="hml-hint" id="hmlLeadSourceHint" hidden>GROW e NBS Gold não passam pela checagem de duplicidade.</span>
   </div>
 </div>
 
@@ -266,7 +277,7 @@
             action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00D8900000622og">
         <input type="hidden" name="oid" value="00D8900000622og">
         <input type="hidden" name="retURL" value="https://arthurkudo.github.io/tline-lead-mock-form-/obrigado.html">
-        <input type="hidden" name="lead_source" value="Site">
+        <input type="hidden" name="lead_source" id="w2lLeadSource" value="Site">
         <input type="hidden" name="first_name" id="first_name">
         <input type="hidden" name="last_name" id="last_name">
         <input type="hidden" name="00N89000005pAFK" id="w2lCodigoConcessionaria">
@@ -385,6 +396,26 @@
   });
   selSeg.addEventListener('change', function () {
     document.getElementById('w2lSegmento').value = selSeg.value;
+  });
+
+  var LEAD_SOURCE_KEY = 'tlineMockLeadSource';
+  var SEM_DEDUP = ['GROW', 'NBS Gold'];
+  var selLeadSource = document.getElementById('hmlLeadSource');
+
+  function applyLeadSource(valor) {
+    var existe = Array.prototype.some.call(selLeadSource.options, function (o) { return o.value === valor; });
+    selLeadSource.value = existe ? valor : 'Site';
+    document.getElementById('w2lLeadSource').value = selLeadSource.value;
+    document.getElementById('hmlLeadSourceHint').hidden = SEM_DEDUP.indexOf(selLeadSource.value) === -1;
+  }
+
+  var savedSource = null;
+  try { savedSource = localStorage.getItem(LEAD_SOURCE_KEY); } catch (e) {}
+  applyLeadSource(savedSource || 'Site');
+
+  selLeadSource.addEventListener('change', function () {
+    applyLeadSource(selLeadSource.value);
+    try { localStorage.setItem(LEAD_SOURCE_KEY, selLeadSource.value); } catch (e) {}
   });
 
   function digits(v) { return v.replace(/\D/g, ''); }
